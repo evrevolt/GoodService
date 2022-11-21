@@ -14,8 +14,20 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
+            let newItem = Task(context: viewContext)
+            
             newItem.timestamp = Date()
+            
+            newItem.client?.name = "Tim"
+            newItem.client?.surname = "Cook"
+            newItem.client?.phone = "+8481310489"
+            
+//            let newClient = Client(context: viewContext)
+//            newClient.name = "Tim"
+//            newClient.surname = "Cook"
+//            newClient.phone = "+7-912-374-58-40"
+            
+//            newItem.client = newClient
         }
         do {
             try viewContext.save()
@@ -31,12 +43,15 @@ struct PersistenceController {
     let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "GoodService")
+        container = NSPersistentCloudKitContainer(name: "GoodServiceV2")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
+                
+                print(error.localizedDescription)
+                
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 
