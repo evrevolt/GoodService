@@ -16,6 +16,7 @@ struct TaskDetails: View {
         VStack {
             
             Text("Параметры заказа")
+                .font(.largeTitle)
             Spacer()
             
             InfoAboutClient(item: item)

@@ -7,24 +7,36 @@
 
 import CoreData
 
+enum StatusTask: Int16 {
+    case new = 0
+    case diagnostics = 1
+}
+
 struct PersistenceController {
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
+        var idNumber = 0
+        
         for _ in 0..<10 {
             let newItem = Task(context: viewContext)
+            idNumber += 1
             
-            newItem.timestamp = Date()
             newItem.id = UUID()
+            newItem.id2 = Int64(idNumber)
+            newItem.brand = "DTS"
             newItem.model = "Raptor"
             newItem.problem = "Пизда рулю. Пизда рулю и седлу"
+            newItem.serialNumber = "HFGY97RBCLOCB86"
+            newItem.status = StatusTask.new.rawValue
+            newItem.timestamp = Date()
             
             let newClient = Client(context: viewContext)
             newClient.name = "Tim"
             newClient.surname = "Cook"
-            newClient.phone = "+7-912-374-58-40"
+            newClient.phone = "+7-777-777-77-77"
             
             newItem.client = newClient
         }
