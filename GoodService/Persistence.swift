@@ -12,13 +12,14 @@ enum StatusTask: Int16 {
     case diagnostics = 1
 }
 
+var idNumber = 0
+
 struct PersistenceController {
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        var idNumber = 0
         
         for _ in 0..<10 {
             let newItem = Task(context: viewContext)

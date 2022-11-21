@@ -23,7 +23,11 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink(destination: TaskDetails(item: item), label: {
-                        Text("\(item.client?.name ?? "No") \(item.client?.surname ?? "Name")")
+                        HStack {
+                            Text("\(item.client?.name ?? "No") \(item.client?.surname ?? "Name")")
+                            CalculateStatusTask()
+                                .multilineTextAlignment(.leading)
+                        }
                     })
                 }
                 .onDelete(perform: deleteItems)

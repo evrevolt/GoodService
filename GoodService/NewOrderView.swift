@@ -11,31 +11,43 @@ struct NewOrderView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State private var currentDate = Date()
-    
     @State private var newClientName = ""
     @State private var newClientSurname = ""
     @State private var newClientPhone = ""
     
-    @State private var taskModel = ""
-    @State private var taskProblem = "Enter problem"
-    
+    @State private var brand = ""
+    @State private var model = ""
+    @State private var problem = "Enter problem"
+    @State private var serialNumber = ""
+    @State private var currentDate = Date()
     
     var body: some View {
         
         VStack {
+            
             Form {
-                TextField(text: $newClientName, prompt: Text("Enter client name")) {
-                    Text("Client name")
+            ClientView(
+                newClientName: $newClientName,
+                newClientSurname: $newClientSurname,
+                newClientPhone: $newClientPhone
+            )
+                
+                Label("Оборудование:", systemImage: "tv.and.hifispeaker.fill")
+                
+                TextField(text: $brand, prompt: Text("Enter brand")) {
+                    Text("Brand")
                 }
                 
-                TextField(text: $newClientSurname, prompt: Text("Enter client surname")) {
-                    Text("Client surname")
+                TextField(text: $model, prompt: Text("Enter model")) {
+                    Text("Model")
+                }
+                TextEditor(text: $problem)
+                
+                TextField(text: $serialNumber, prompt: Text("Enter serial number")) {
+                    Text("Serial number")
                 }
                 
-                TextField(text: $newClientPhone, prompt: Text("Enter client phone")) {
-                    Text("Client phone")
-                }
+                
                 
                 DatePicker(
                     "Start Date",
@@ -43,19 +55,13 @@ struct NewOrderView: View {
                     displayedComponents: [.date]
                 )
                 .datePickerStyle(.wheel)
+            }
                 
-                TextField(text: $taskModel, prompt: Text("Enter model")) {
-                    Text("Model")
-                }
-                
-                TextEditor(text: $taskProblem)
                 
                 
                 Button("Add Task", action: addTask)
                     .buttonStyle(.borderedProminent)
             }
-        }
-        .padding()
         
     }
     
@@ -64,10 +70,15 @@ struct NewOrderView: View {
             let newItem = Task(context: viewContext)
             let newClient = Client(context: viewContext)
             
-            newItem.timestamp = currentDate
             newItem.id = UUID()
-            newItem.model = taskModel
-            newItem.problem = taskProblem
+            idNumber += 1
+            newItem.id2 = Int64(idNumber)
+            newItem.brand = brand
+            newItem.model = model
+            newItem.problem = problem
+            newItem.serialNumber = serialNumber
+            newItem.status = StatusTask.new.rawValue
+            newItem.timestamp = currentDate
             
             newClient.name = newClientName
             newClient.surname = newClientSurname
