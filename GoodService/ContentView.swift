@@ -23,7 +23,7 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink(destination: TaskDetails(item: item), label: {
-                        Text(item.client?.name ?? "Old")
+                        Text("\(item.client?.name ?? "No") \(item.client?.surname ?? "Name")")
                     })
                 }
                 .onDelete(perform: deleteItems)

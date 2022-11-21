@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		544A7DED292B7AFD00D987CA /* InfoAboutClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A7DEC292B7AFD00D987CA /* InfoAboutClient.swift */; };
 		54C88672292A962200505D3A /* GoodServiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C88671292A962200505D3A /* GoodServiceApp.swift */; };
 		54C88674292A962200505D3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C88673292A962200505D3A /* ContentView.swift */; };
 		54C88676292A962400505D3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C88675292A962400505D3A /* Assets.xcassets */; };
 		54C88679292A962400505D3A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C88678292A962400505D3A /* Preview Assets.xcassets */; };
 		54C8867B292A962400505D3A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C8867A292A962400505D3A /* Persistence.swift */; };
-		54C8867E292A962400505D3A /* GoodService.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 54C8867C292A962400505D3A /* GoodService.xcdatamodeld */; };
 		54C88686292A994600505D3A /* NewOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C88685292A994600505D3A /* NewOrderView.swift */; };
 		54C88688292B55C400505D3A /* TaskDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C88687292B55C400505D3A /* TaskDetails.swift */; };
 		54C8868B292B61C800505D3A /* GoodServiceV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 54C88689292B61C800505D3A /* GoodServiceV2.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		544A7DEC292B7AFD00D987CA /* InfoAboutClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutClient.swift; sourceTree = "<group>"; };
 		54C8866E292A962200505D3A /* GoodService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C88671292A962200505D3A /* GoodServiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodServiceApp.swift; sourceTree = "<group>"; };
 		54C88673292A962200505D3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		54C88675292A962400505D3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54C88678292A962400505D3A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		54C8867A292A962400505D3A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		54C8867D292A962400505D3A /* GoodService.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodService.xcdatamodel; sourceTree = "<group>"; };
 		54C8867F292A962400505D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54C88685292A994600505D3A /* NewOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderView.swift; sourceTree = "<group>"; };
 		54C88687292B55C400505D3A /* TaskDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetails.swift; sourceTree = "<group>"; };
@@ -63,13 +63,13 @@
 			isa = PBXGroup;
 			children = (
 				54C88671292A962200505D3A /* GoodServiceApp.swift */,
+				544A7DEC292B7AFD00D987CA /* InfoAboutClient.swift */,
 				54C88685292A994600505D3A /* NewOrderView.swift */,
 				54C88673292A962200505D3A /* ContentView.swift */,
 				54C88687292B55C400505D3A /* TaskDetails.swift */,
 				54C88675292A962400505D3A /* Assets.xcassets */,
 				54C8867A292A962400505D3A /* Persistence.swift */,
 				54C8867F292A962400505D3A /* Info.plist */,
-				54C8867C292A962400505D3A /* GoodService.xcdatamodeld */,
 				54C88689292B61C800505D3A /* GoodServiceV2.xcdatamodeld */,
 				54C88677292A962400505D3A /* Preview Content */,
 			);
@@ -157,7 +157,7 @@
 				54C8867B292A962400505D3A /* Persistence.swift in Sources */,
 				54C88674292A962200505D3A /* ContentView.swift in Sources */,
 				54C88686292A994600505D3A /* NewOrderView.swift in Sources */,
-				54C8867E292A962400505D3A /* GoodService.xcdatamodeld in Sources */,
+				544A7DED292B7AFD00D987CA /* InfoAboutClient.swift in Sources */,
 				54C88672292A962200505D3A /* GoodServiceApp.swift in Sources */,
 				54C88688292B55C400505D3A /* TaskDetails.swift in Sources */,
 				54C8868B292B61C800505D3A /* GoodServiceV2.xcdatamodeld in Sources */,
@@ -363,16 +363,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		54C8867C292A962400505D3A /* GoodService.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				54C8867D292A962400505D3A /* GoodService.xcdatamodel */,
-			);
-			currentVersion = 54C8867D292A962400505D3A /* GoodService.xcdatamodel */;
-			path = GoodService.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		54C88689292B61C800505D3A /* GoodServiceV2.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

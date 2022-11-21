@@ -12,11 +12,27 @@ struct TaskDetails: View {
     var item: Task
     
     var body: some View {
-        Text("Item at \(item.timestamp ?? Date(), formatter: itemFormatter)")
-        Text("Hello, Named!")
-        Text((item.client?.name)!)
-        Text((item.client?.surname!)!)
-        Text((item.client?.phone!)!)
+        
+        VStack {
+            
+            Text("Параметры заказа")
+            Spacer()
+            
+            InfoAboutClient(item: item)
+            
+            Spacer()
+            
+            Text("Model: \((item.model) ?? "No model name")")
+            Text("Problem: \((item.problem) ?? "No problem")")
+                .lineLimit(5)
+            
+            Spacer()
+            
+            Text(item.id?.description ?? UUID().description)
+            
+            Text("Дата создания заказа: \n \(item.timestamp ?? Date(), formatter: itemFormatter)")
+        }
+        .padding()
     }
 }
 

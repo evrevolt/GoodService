@@ -12,27 +12,48 @@ struct NewOrderView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var currentDate = Date()
-    @State private var newClientName = "Name"
-    @State private var newClientSurname = "Surname"
-    @State private var newClientPhone = "+7-777-777-77-77"
+    
+    @State private var newClientName = ""
+    @State private var newClientSurname = ""
+    @State private var newClientPhone = ""
+    
+    @State private var taskModel = ""
+    @State private var taskProblem = "Enter problem"
     
     
     var body: some View {
         
         VStack {
-            TextField("Place", text: $newClientName)
-            TextField("Surname", text: $newClientSurname)
-            TextField("Phone", text: $newClientPhone)
-            DatePicker(
-                "Start Date",
-                selection: $currentDate,
-                displayedComponents: [.date]
-            )
-            .datePickerStyle(.wheel)
-            
-            Button("Add Task", action: addTask)
-                .buttonStyle(.borderedProminent)
-            
+            Form {
+                TextField(text: $newClientName, prompt: Text("Enter client name")) {
+                    Text("Client name")
+                }
+                
+                TextField(text: $newClientSurname, prompt: Text("Enter client surname")) {
+                    Text("Client surname")
+                }
+                
+                TextField(text: $newClientPhone, prompt: Text("Enter client phone")) {
+                    Text("Client phone")
+                }
+                
+                DatePicker(
+                    "Start Date",
+                    selection: $currentDate,
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(.wheel)
+                
+                TextField(text: $taskModel, prompt: Text("Enter model")) {
+                    Text("Model")
+                }
+                
+                TextEditor(text: $taskProblem)
+                
+                
+                Button("Add Task", action: addTask)
+                    .buttonStyle(.borderedProminent)
+            }
         }
         .padding()
         
@@ -41,10 +62,18 @@ struct NewOrderView: View {
     private func addTask() {
         withAnimation {
             let newItem = Task(context: viewContext)
+            let newClient = Client(context: viewContext)
+            
             newItem.timestamp = currentDate
-            newItem.client?.name = newClientName
-            newItem.client?.surname = newClientSurname
-            newItem.client?.phone = newClientPhone
+            newItem.id = UUID()
+            newItem.model = taskModel
+            newItem.problem = taskProblem
+            
+            newClient.name = newClientName
+            newClient.surname = newClientSurname
+            newClient.phone = newClientPhone
+            
+            newItem.client = newClient
 
             do {
                 try viewContext.save()

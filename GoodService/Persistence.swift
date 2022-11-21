@@ -17,17 +17,16 @@ struct PersistenceController {
             let newItem = Task(context: viewContext)
             
             newItem.timestamp = Date()
+            newItem.id = UUID()
+            newItem.model = "Raptor"
+            newItem.problem = "Пизда рулю. Пизда рулю и седлу"
             
-            newItem.client?.name = "Tim"
-            newItem.client?.surname = "Cook"
-            newItem.client?.phone = "+8481310489"
+            let newClient = Client(context: viewContext)
+            newClient.name = "Tim"
+            newClient.surname = "Cook"
+            newClient.phone = "+7-912-374-58-40"
             
-//            let newClient = Client(context: viewContext)
-//            newClient.name = "Tim"
-//            newClient.surname = "Cook"
-//            newClient.phone = "+7-912-374-58-40"
-            
-//            newItem.client = newClient
+            newItem.client = newClient
         }
         do {
             try viewContext.save()
