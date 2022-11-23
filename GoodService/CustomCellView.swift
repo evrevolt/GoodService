@@ -14,7 +14,6 @@ struct CustomCell: View {
     var color2: Color
     var image: String
     var title: String
-    var subTitle: String
     var description: String
     
     var body: some View {
@@ -49,8 +48,6 @@ struct CustomCell: View {
             Spacer()
             VStack {
                 Text(title)
-                    .font(.largeTitle)
-                Text(subTitle)
                     .font(.title)
                 Spacer()
                 Text(description)
@@ -71,7 +68,6 @@ struct CustomCellView: View {
                 color2: .gray,
                 image: "airplane",
                 title: "Title",
-                subTitle: "Sub title",
                 description: "description"
             )
         }
