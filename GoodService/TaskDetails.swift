@@ -9,33 +9,105 @@ import SwiftUI
 
 struct TaskDetails: View {
     
+    @Environment(\.managedObjectContext) private var viewContext
     var item: Task
+    @State private var status = 0
     
     var body: some View {
         
+        
         VStack {
-            
-            Text("Параметры заказа")
-                .font(.largeTitle)
-            Spacer()
-            
-            InfoAboutClient(item: item)
-            
-            Spacer()
-            
-            Text("Model: \((item.model) ?? "No model name")")
-            Text("Problem: \((item.problem) ?? "No problem")")
-                .lineLimit(5)
-            
-            Spacer()
-            
-            Text(item.id?.description ?? UUID().description)
-            
-            Text("Дата создания заказа: \n \(item.timestamp ?? Date(), formatter: itemFormatter)")
+            ScrollView {
+                
+                VStack {
+                    Label(item.id2.formatted(), systemImage: "signature")
+                    
+                    NavigationLink(destination: InfoAboutClient(item: item)) {
+                        Text("\(item.client?.name ?? "") \(item.client?.surname ?? "")")
+                    }
+                    
+                    Label("Оборудование:", systemImage: "tv.and.hifispeaker.fill")
+                    
+                    Text("Brand: \(item.brand ?? "")")
+                    Text("Model: \(item.model ?? "")")
+                }
+                .font(.title)
+                
+                Text(item.timestamp!, formatter: itemFormatter)
+                
+                DevicePath(item: item, status: $status)
+            }
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Next step") {
+                        status = nextStep()
+                    }
+                }
+                ToolbarItem {
+                    Button("Test") {
+                        status = Int(item.status)
+                    }
+                }
+            })
+            .padding()
         }
-        .padding()
+    }
+    
+    private func nextStep() -> Int {
+        if item.status == 0 {
+            item.status = 1
+            saveCoreData()
+            return 1
+        } else if item.status == 1 && !item.diagnosticBool {
+            item.status = 1
+            item.diagnosticBool = true
+            saveCoreData()
+            return 1
+        } else if item.status == 1 && item.diagnosticBool {
+            item.status = 2
+            item.diagnosticBool = true
+            saveCoreData()
+            return 2
+        } else if item.status == 2 {
+            item.status = 3
+            saveCoreData()
+            return 3
+        } else if item.status == 3 {
+            item.status = 4
+            saveCoreData()
+            return 4
+        } else if item.status == 4 {
+            item.status = 5
+            saveCoreData()
+            return 5
+        } else if item.status == 5 {
+            item.status = 6
+            saveCoreData()
+            return 6
+        } else if item.status == 6 {
+            item.status = 7
+            saveCoreData()
+            return 7
+        } else if item.status == 7 {
+            print("Поздравляем с завершением!")
+            saveCoreData()
+            return 7
+        } else {
+            print("неверное значение")
+            saveCoreData()
+            return 7
+        }
+    }
+    private func saveCoreData() {
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }
+
 
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -49,3 +121,4 @@ private let itemFormatter: DateFormatter = {
 //        TaskDetails(item: )
 //    }
 //}
+

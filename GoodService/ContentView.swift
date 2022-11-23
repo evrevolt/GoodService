@@ -10,6 +10,8 @@ import CoreData
 
 struct ContentView: View {
     
+    @State private var orderIsPresented = false
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -17,14 +19,15 @@ struct ContentView: View {
         animation: .default)
     
     private var items: FetchedResults<Task>
-
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink(destination: TaskDetails(item: item), label: {
                         HStack {
-                            Text("\(item.client?.name ?? "No") \(item.client?.surname ?? "Name")")
+                            Text("\(item.brand ?? "No") \(item.model ?? "Name")")
+                            Spacer()
                             CalculateStatusTask()
                                 .multilineTextAlignment(.leading)
                         }
@@ -32,16 +35,17 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    NavigationLink(destination: NewOrderView(), label: {
-                        Label("New task", systemImage: "plus")
-                    })
-                }
+            .sheet(isPresented: $orderIsPresented) {
+                NewOrderView(orderIsPresented: $orderIsPresented)
             }
+            .navigationBarItems(trailing: Button(action: {
+                orderIsPresented = true
+            }, label: {
+                Image(systemName: "plus.circle")
+                    .imageScale(.large)
+            }))
+            .navigationTitle("Заказы")
+
             Text("Select an item")
         }
     }

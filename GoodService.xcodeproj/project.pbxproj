@@ -10,6 +10,8 @@
 		54325234292BE5A2005348AD /* CalculateStatusTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54325233292BE5A2005348AD /* CalculateStatusTask.swift */; };
 		54325236292BEA30005348AD /* ClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54325235292BEA30005348AD /* ClientView.swift */; };
 		544A7DED292B7AFD00D987CA /* InfoAboutClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A7DEC292B7AFD00D987CA /* InfoAboutClient.swift */; };
+		548D4CB8292CB86E00533911 /* CustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548D4CB7292CB86E00533911 /* CustomCellView.swift */; };
+		548D4CBA292CCECE00533911 /* DevicePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548D4CB9292CCECE00533911 /* DevicePath.swift */; };
 		54C88672292A962200505D3A /* GoodServiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C88671292A962200505D3A /* GoodServiceApp.swift */; };
 		54C88674292A962200505D3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C88673292A962200505D3A /* ContentView.swift */; };
 		54C88676292A962400505D3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C88675292A962400505D3A /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 		54325233292BE5A2005348AD /* CalculateStatusTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateStatusTask.swift; sourceTree = "<group>"; };
 		54325235292BEA30005348AD /* ClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientView.swift; sourceTree = "<group>"; };
 		544A7DEC292B7AFD00D987CA /* InfoAboutClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutClient.swift; sourceTree = "<group>"; };
+		548D4CB7292CB86E00533911 /* CustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellView.swift; sourceTree = "<group>"; };
+		548D4CB9292CCECE00533911 /* DevicePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePath.swift; sourceTree = "<group>"; };
 		54C8866E292A962200505D3A /* GoodService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C88671292A962200505D3A /* GoodServiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodServiceApp.swift; sourceTree = "<group>"; };
 		54C88673292A962200505D3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,8 +75,10 @@
 				54325233292BE5A2005348AD /* CalculateStatusTask.swift */,
 				54C88685292A994600505D3A /* NewOrderView.swift */,
 				54325235292BEA30005348AD /* ClientView.swift */,
+				548D4CB7292CB86E00533911 /* CustomCellView.swift */,
 				54C88673292A962200505D3A /* ContentView.swift */,
 				54C88687292B55C400505D3A /* TaskDetails.swift */,
+				548D4CB9292CCECE00533911 /* DevicePath.swift */,
 				54C88675292A962400505D3A /* Assets.xcassets */,
 				54C8867A292A962400505D3A /* Persistence.swift */,
 				54C8867F292A962400505D3A /* Info.plist */,
@@ -161,9 +167,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				54C8867B292A962400505D3A /* Persistence.swift in Sources */,
+				548D4CBA292CCECE00533911 /* DevicePath.swift in Sources */,
 				54325234292BE5A2005348AD /* CalculateStatusTask.swift in Sources */,
 				54C88674292A962200505D3A /* ContentView.swift in Sources */,
 				54C88686292A994600505D3A /* NewOrderView.swift in Sources */,
+				548D4CB8292CB86E00533911 /* CustomCellView.swift in Sources */,
 				544A7DED292B7AFD00D987CA /* InfoAboutClient.swift in Sources */,
 				54C88672292A962200505D3A /* GoodServiceApp.swift in Sources */,
 				54C88688292B55C400505D3A /* TaskDetails.swift in Sources */,
