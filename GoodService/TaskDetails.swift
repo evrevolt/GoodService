@@ -10,8 +10,8 @@ import SwiftUI
 struct TaskDetails: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    var item: Task
-    @State private var status = 0
+    @ObservedObject var item: Task
+    @State private var isPresented = false
     
     var body: some View {
         
@@ -35,17 +35,17 @@ struct TaskDetails: View {
                 
                 Text(item.timestamp!, formatter: itemFormatter)
                 
-                DevicePath(item: item, status: $status)
+                DevicePath(
+                    item: item,
+                    isPresented: $isPresented,
+                    diagnosticsDescription: item.diagnosticProblem ?? ""
+                )
             }
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Next step") {
-                        status = nextStep()
-                    }
-                }
-                ToolbarItem {
-                    Button("Test") {
-                        status = Int(item.status)
+                        item.status = Int16(nextStep())
+                        isPresented.toggle()
                     }
                 }
             })

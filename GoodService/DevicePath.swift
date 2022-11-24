@@ -7,10 +7,21 @@
 
 import SwiftUI
 
+struct SaveDetails: Identifiable {
+    let name: String
+    let error: String
+    let id = UUID()
+}
+
 struct DevicePath: View {
     
-    var item: Task
-    @Binding var status: Int
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @ObservedObject var item: Task
+    @Binding var isPresented: Bool
+    @State private var details: SaveDetails?
+    
+    @State var diagnosticsDescription: String
 
     var body: some View {
         VStack {
@@ -18,27 +29,43 @@ struct DevicePath: View {
             CustomCell(
                 time: "\(item.timestamp?.formatted() ?? "")",
                 color1: .yellow,
-                color2: status >= 1 || item.status >= 1 ? .yellow : .gray,
+                color2: item.status >= 1 ? .yellow : .gray,
                 image: "pc",
                 title: "Новый",
                 description: "\(item.problem ?? "")"
             )
+            .alert("Text", isPresented: $isPresented) {
+                TextField("Username", text: $diagnosticsDescription)
+                
+                Button("1", role: .none) {
+                    item.diagnosticProblem = diagnosticsDescription
+                    do {
+                        try viewContext.save()
+                    } catch {
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                    }
+                }
+                Button("2", role: .destructive) {
+                    
+                }
+            }
             
             //Diagnostics
             CustomCell(
                 time: "10:10",
-                color1: status >= 1 || item.status >= 1 ? .yellow : .gray,
-                color2: status >= 2 || item.status >= 2 ? .yellow : .gray,
+                color1: item.status >= 1 ? .yellow : .gray,
+                color2: item.status >= 2 ? .yellow : .gray,
                 image: "clock.arrow.2.circlepath",
                 title: "Диагностика",
-                description: "description"
+                description: item.diagnosticProblem ?? "Диагностика не произведена"
             )
             
             //Согласование
             CustomCell(
                 time: "10:10",
-                color1: status >= 2 || item.status >= 2 ? .yellow : .gray,
-                color2: status >= 3 || item.status >= 3 ? .yellow : .gray,
+                color1: item.status >= 2 ? .yellow : .gray,
+                color2: item.status >= 3 ? .yellow : .gray,
                 image: "phone",
                 title: "Согласны?",
                 description: "description"
@@ -47,8 +74,8 @@ struct DevicePath: View {
             //Ремонт
             CustomCell(
                 time: "10:10",
-                color1: status >= 3 || item.status >= 3 ? .yellow : .gray,
-                color2: status >= 4 || item.status >= 4 ? .yellow : .gray,
+                color1: item.status >= 3 ? .yellow : .gray,
+                color2: item.status >= 4 ? .yellow : .gray,
                 image: "memorychip",
                 title: "Ремонт",
                 description: "description"
@@ -57,8 +84,8 @@ struct DevicePath: View {
             //Готов
             CustomCell(
                 time: "10:10",
-                color1: status >= 4 || item.status >= 4 ? .yellow : .gray,
-                color2: status >= 5 || item.status >= 5 ? .yellow : .gray,
+                color1: item.status >= 4 ? .yellow : .gray,
+                color2: item.status >= 5 ? .yellow : .gray,
                 image: "bolt.fill",
                 title: "Готов",
                 description: "description"
@@ -67,8 +94,8 @@ struct DevicePath: View {
             //Выставите счет
             CustomCell(
                 time: "10:10",
-                color1: status >= 5 || item.status >= 5 ? .yellow : .gray,
-                color2: status >= 6 || item.status >= 6 ? .yellow : .gray,
+                color1: item.status >= 5 ? .yellow : .gray,
+                color2: item.status >= 6 ? .yellow : .gray,
                 image: "creditcard",
                 title: "Счет на оплату",
                 description: "description"
@@ -77,8 +104,8 @@ struct DevicePath: View {
             //Получение оплаты
             CustomCell(
                 time: "10:10",
-                color1: status >= 6 || item.status >= 6 ? .yellow : .gray,
-                color2: status >= 7 || item.status >= 7 ? .yellow : .gray,
+                color1: item.status >= 6 ? .yellow : .gray,
+                color2: item.status >= 7 ? .yellow : .gray,
                 image: "dollarsign",
                 title: "Оплата получена",
                 description: "description"
@@ -87,8 +114,8 @@ struct DevicePath: View {
             //Забрали
             CustomCell(
                 time: "10:10",
-                color1: status >= 7 || item.status >= 7 ? .yellow : .gray,
-                color2: status >= 7 || item.status >= 7 ? .yellow : .gray,
+                color1: item.status >= 7 ? .yellow : .gray,
+                color2: item.status >= 7 ? .yellow : .gray,
                 image: "figure.walk.motion",
                 title: "Забрали",
                 description: "description"
