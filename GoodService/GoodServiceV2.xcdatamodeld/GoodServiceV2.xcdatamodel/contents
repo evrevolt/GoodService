@@ -7,8 +7,8 @@
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="client" inverseEntity="Task"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="agreementBool" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="brand" attributeType="String"/>
-        <attribute name="diagnosticBool" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="diagnosticProblem" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="id2" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

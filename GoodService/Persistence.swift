@@ -28,7 +28,7 @@ struct PersistenceController {
             newItem.id = UUID()
             newItem.id2 = Int64(idNumber)
             newItem.brand = "DTS"
-            newItem.diagnosticBool = false
+//            newItem.diagnosticBool = false
             newItem.model = "Raptor"
             newItem.problem = "Пизда рулю. Пизда рулю и седлу"
             newItem.serialNumber = "HFGY97RBCLOCB86"

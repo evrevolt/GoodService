@@ -11,7 +11,7 @@ struct TaskDetails: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var item: Task
-    @State private var isPresented = false
+    @State private var isPresentedDiagnistics = false
     
     var body: some View {
         
@@ -37,7 +37,7 @@ struct TaskDetails: View {
                 
                 DevicePath(
                     item: item,
-                    isPresented: $isPresented,
+                    isPresentedDiagnostics: $isPresentedDiagnistics,
                     diagnosticsDescription: item.diagnosticProblem ?? ""
                 )
             }
@@ -45,7 +45,7 @@ struct TaskDetails: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Next step") {
                         item.status = Int16(nextStep())
-                        isPresented.toggle()
+                        isPresentedDiagnistics.toggle()
                     }
                 }
             })
@@ -58,14 +58,8 @@ struct TaskDetails: View {
             item.status = 1
             saveCoreData()
             return 1
-        } else if item.status == 1 && !item.diagnosticBool {
-            item.status = 1
-            item.diagnosticBool = true
-            saveCoreData()
-            return 1
-        } else if item.status == 1 && item.diagnosticBool {
+        } else if item.status == 1 {
             item.status = 2
-            item.diagnosticBool = true
             saveCoreData()
             return 2
         } else if item.status == 2 {

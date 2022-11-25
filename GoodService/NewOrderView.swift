@@ -76,7 +76,7 @@ struct NewOrderView: View {
             idNumber += 1
             newItem.id2 = Int64(idNumber)
             newItem.brand = brand
-            newItem.diagnosticBool = false
+//            newItem.diagnosticBool = false
             newItem.model = model
             newItem.problem = problem
             newItem.serialNumber = serialNumber

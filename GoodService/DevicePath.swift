@@ -18,7 +18,7 @@ struct DevicePath: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var item: Task
-    @Binding var isPresented: Bool
+    @Binding var isPresentedDiagnostics: Bool
     @State private var details: SaveDetails?
     
     @State var diagnosticsDescription: String
@@ -34,10 +34,10 @@ struct DevicePath: View {
                 title: "Новый",
                 description: "\(item.problem ?? "")"
             )
-            .alert("Text", isPresented: $isPresented) {
-                TextField("Username", text: $diagnosticsDescription)
+            .alert("Результаты диагностики", isPresented: $isPresentedDiagnostics) {
+                TextField("Введите найденную проблему", text: $diagnosticsDescription)
                 
-                Button("1", role: .none) {
+                Button("Сохранить", role: .none) {
                     item.diagnosticProblem = diagnosticsDescription
                     do {
                         try viewContext.save()
@@ -45,9 +45,6 @@ struct DevicePath: View {
                         let nsError = error as NSError
                         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                     }
-                }
-                Button("2", role: .destructive) {
-                    
                 }
             }
             
@@ -67,7 +64,7 @@ struct DevicePath: View {
                 color1: item.status >= 2 ? .yellow : .gray,
                 color2: item.status >= 3 ? .yellow : .gray,
                 image: "phone",
-                title: "Согласны?",
+                title: "Согласование",
                 description: "description"
             )
             
