@@ -43,7 +43,9 @@ struct NewOrderView: View {
                 TextField(text: $model, prompt: Text("Enter model")) {
                     Text("Model")
                 }
-                TextEditor(text: $problem)
+                TextField(text: $problem, prompt: Text("Enter problem")) {
+                    Text("Problems")
+                }
                 
                 TextField(text: $serialNumber, prompt: Text("Enter serial number")) {
                     Text("Serial number")

@@ -10,6 +10,12 @@ import CoreData
 enum StatusTask: Int16 {
     case new = 0
     case diagnostics = 1
+    case argeement = 2
+    case repair = 3
+    case ready = 4
+    case paymentPrice = 5
+    case paymentBool = 6
+    case puckupDevice = 7
 }
 
 var idNumber = 0
@@ -28,7 +34,6 @@ struct PersistenceController {
             newItem.id = UUID()
             newItem.id2 = Int64(idNumber)
             newItem.brand = "DTS"
-//            newItem.diagnosticBool = false
             newItem.model = "Raptor"
             newItem.problem = "Пизда рулю. Пизда рулю и седлу"
             newItem.serialNumber = "HFGY97RBCLOCB86"

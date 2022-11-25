@@ -13,10 +13,22 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="id2" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="model" attributeType="String"/>
+        <attribute name="paymentBool" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="paymentPrice" optional="YES" attributeType="String"/>
+        <attribute name="pickupDevice" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="problem" attributeType="String"/>
+        <attribute name="ready" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="repair" optional="YES" attributeType="String"/>
         <attribute name="serialNumber" attributeType="String"/>
         <attribute name="status" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampAgreement" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampDiagnostics" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampPayment" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampPaymentBool" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampPickup" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampReady" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestampRepair" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="task" inverseEntity="Client"/>
     </entity>
 </model>

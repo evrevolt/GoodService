@@ -28,7 +28,7 @@ struct ContentView: View {
                         HStack {
                             Text("\(item.brand ?? "No") \(item.model ?? "Name")")
                             Spacer()
-                            CalculateStatusTask()
+                            CalculateStatusTask(currentStatus: item.status)
                                 .multilineTextAlignment(.leading)
                         }
                     })

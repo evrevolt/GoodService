@@ -11,7 +11,14 @@ struct TaskDetails: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var item: Task
+    
     @State private var isPresentedDiagnistics = false
+    @State private var isPresentedArgeement = false
+    @State private var isPresentedRepair = false
+    @State private var isPresentedReady = false
+    @State private var isPresentedPaymentPrice = false
+    @State private var isPresentedPaymentBool = false
+    @State private var isPresentedPuckupDevice = false
     
     var body: some View {
         
@@ -19,7 +26,7 @@ struct TaskDetails: View {
         VStack {
             ScrollView {
                 
-                VStack {
+                VStack(alignment: .leading) {
                     Label(item.id2.formatted(), systemImage: "signature")
                     
                     NavigationLink(destination: InfoAboutClient(item: item)) {
@@ -38,14 +45,22 @@ struct TaskDetails: View {
                 DevicePath(
                     item: item,
                     isPresentedDiagnostics: $isPresentedDiagnistics,
-                    diagnosticsDescription: item.diagnosticProblem ?? ""
+                    isPresentedArgeement: $isPresentedArgeement,
+                    isPresentedRepair: $isPresentedRepair,
+                    isPresentedReady: $isPresentedReady,
+                    isPresentedPaymentPrice: $isPresentedPaymentPrice,
+                    isPresentedPaymentBool: $isPresentedPaymentBool,
+                    isPresentedPuckupDevice: $isPresentedPuckupDevice
                 )
             }
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Next step") {
-                        item.status = Int16(nextStep())
-                        isPresentedDiagnistics.toggle()
+//                        item.status = Int16(nextStep())
+//                        isPresentedDiagnistics.toggle()
+                        
+                        nextStep()
+                        
                     }
                 }
             })
@@ -53,43 +68,48 @@ struct TaskDetails: View {
         }
     }
     
-    private func nextStep() -> Int {
+    private func nextStep() {
         if item.status == 0 {
             item.status = 1
             saveCoreData()
-            return 1
+            isPresentedDiagnistics.toggle()
+            
         } else if item.status == 1 {
             item.status = 2
             saveCoreData()
-            return 2
+            isPresentedArgeement.toggle()
+
         } else if item.status == 2 {
             item.status = 3
             saveCoreData()
-            return 3
+            isPresentedRepair.toggle()
+
         } else if item.status == 3 {
             item.status = 4
             saveCoreData()
-            return 4
+            isPresentedReady.toggle()
+
         } else if item.status == 4 {
             item.status = 5
             saveCoreData()
-            return 5
+            isPresentedPaymentPrice.toggle()
+
         } else if item.status == 5 {
             item.status = 6
             saveCoreData()
-            return 6
+            isPresentedPaymentBool.toggle()
+
         } else if item.status == 6 {
             item.status = 7
             saveCoreData()
-            return 7
+            isPresentedPuckupDevice.toggle()
+
         } else if item.status == 7 {
             print("Поздравляем с завершением!")
-            saveCoreData()
-            return 7
+
         } else {
-            print("неверное значение")
-            saveCoreData()
-            return 7
+            print("Неверное значение")
+
         }
     }
     private func saveCoreData() {
